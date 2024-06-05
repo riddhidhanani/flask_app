@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>People Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>People Management</h1>
+    
+    <h2>Search for People</h2>
+    <form action="{{ url_for('search') }}" method="post">
+        <label for="name">Search by Name:</label>
+        <input type="text" id="name" name="name">
+        <button type="submit">Search</button>
+    </form>
+    <form action="{{ url_for('search') }}" method="post">
+        <label for="salary">Search by Salary (less than):</label>
+        <input type="number" id="salary" name="salary">
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Upload Picture for a Person</h2>
+    <form action="{{ url_for('upload_picture') }}" method="post" enctype="multipart/form-data">
+        <label for="person_name">Person's Name:</label>
+        <input type="text" id="person_name" name="person_name" required>
+        <label for="picture">Select Picture:</label>
+        <input type="file" id="picture" name="picture" accept="image/*" required>
+        <button type="submit">Upload Picture</button>
+    </form>
+
+    <h2>Remove a Person</h2>
+    <form action="{{ url_for('remove_person') }}" method="post">
+        <label for="remove_name">Person's Name:</label>
+        <input type="text" id="remove_name" name="remove_name" required>
+        <button type="submit">Remove Person</button>
+    </form>
+
+    <h2>Change Person's Keyword</h2>
+    <form action="{{ url_for('change_keyword') }}" method="post">
+        <label for="keyword_name">Person's Name:</label>
+        <input type="text" id="keyword_name" name="keyword_name" required>
+        <label for="new_keyword">New Keyword:</label>
+        <input type="text" id="new_keyword" name="new_keyword" required>
+        <button type="submit">Change Keyword</button>
+    </form>
+
+    <h2>Change Person's Salary</h2>
+    <form action="{{ url_for('change_salary') }}" method="post">
+        <label for="salary_name">Person's Name:</label>
+        <input type="text" id="salary_name" name="salary_name" required>
+        <label for="new_salary">New Salary:</label>
+        <input type="number" id="new_salary" name="new_salary" required>
+        <button type="submit">Change Salary</button>
+    </form>
+</body>
+</html>

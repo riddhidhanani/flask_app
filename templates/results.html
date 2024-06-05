@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Search Results</h1>
+    {% if results %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>State</th>
+                    <th>Salary</th>
+                    <th>Grade</th>
+                    <th>Room</th>
+                    <th>Telnum</th>
+                    <th>Picture</th>
+                    <th>Keywords</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in results %}
+                    <tr>
+                        <td>{{ person['Name'] }}</td>
+                        <td>{{ person['State'] }}</td>
+                        <td>{{ person['Salary'] }}</td>
+                        <td>{{ person['Grade'] }}</td>
+                        <td>{{ person['Room'] }}</td>
+                        <td>{{ person['Telnum'] }}</td>
+                        <td>
+                            {% if person['Picture'] %}
+                                <img src="{{ url_for('static', filename='images/' ~ person['Picture']) }}" alt="{{ person['Name'] }}" width="50">
+                            {% endif %}
+                        </td>
+                        <td>{{ person['Keywords'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+    <a href="{{ url_for('index') }}">Back to Search</a>
+</body>
+</html>
